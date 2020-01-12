@@ -1,0 +1,91 @@
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530  1) from matplotlib import pyplot as plt
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530  2) import pandas as pd
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530  3) import pylab as pl
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530  4) import numpy as np
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530  5) import os
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530  6) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530  7) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530  8) DOWNLOAD_ROOT = "https://s3-api.us-geo.objectstorage.softlayer.net/cf-courses-data/CognitiveClass/ML0101ENv3/labs/FuelConsumptionCo2.csv"
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530  9) DATASET_PATH = os.path.join("datasets","CO2")
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 10) DATASET_URL = DOWNLOAD_ROOT 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 11) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 12) def fetch_n_load_dataset(dataset_url = DATASET_URL, dataset_path = DATASET_PATH):
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 13) 		"""
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 14) 		Fetches and load dataset.
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 15) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 16) 		:param      dataset_url:   The dataset url
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 17) 		:type       dataset_url:   { The URl of dataset as variable}
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 18) 		:param      dataset_path:  The dataset path
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 19) 		:type       dataset_path:  { PATH details for the dataset as the var}
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 20) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 21) 		:returns:   The file at a particular file location .
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 22) 		:rtype:     { return_type of this function is the file path }
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 23) 		"""
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 24) 		if not os.path.isdir(dataset_path):
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 25) 			os.makedirs(dataset_path)
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 26) 		tgz_path = os.path.join(dataset_path,tgz_path)
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 27) 		csv_path = os.path.join(dataset_path,"FuelConsumptionCo2.csv")
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 28) 		return pd.read_csv(csv_path)
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 29) df = pd.read_csv("FuelConsumption.csv")
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 30) df.head()
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 31) df.describe()
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 32) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 33) # Histogram of these labels
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 34) cdf = df[['ENGINESIZE','CYLINDERS','FUELCONSUMPTION_COMB','CO2EMISSIONS']]
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 35) cdf.head(9)
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 36) cdf.hist()
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 37) plt.show()
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 38) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 39) #Comparative graph of the comsumption and CO2EMMISION
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 40) plt.scatter(cdf.FUELCONSUMPTION_COMB,cdf.CO2EMISSIONS)
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 41) plt.xlabel("FUELCONSUMPTION_COMB")
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 42) plt.ylabel("Emission")
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 43) plt.show()
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 44) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 45) #comprative graph of the ENGINESIZE and CO2EMISSON
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 46) plt.scatter(cdf.ENGINESIZE,cdf.CO2EMISSIONS,color='red')
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 47) plt.xlabel('ENGINESIZE')
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 48) plt.ylabel('Emission')
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 49) plt.show()
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 50) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 51) #comprative graph of the ENGINESIZE and CO2EMISSON
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 52) plt.scatter(cdf.CYLINDERS,cdf.CO2EMISSIONS,color='red')
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 53) plt.xlabel('Cylinder')
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 54) plt.ylabel('Emission')
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 55) plt.show()
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 56) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 57) ##
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 58) ## USING THE DATASETS DETAIL TO CREATE SIMPLE OF REGRESSION
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 59) ##
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 60) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 61) msk = np.random.rand(len(df)) < 0.8
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 62) train = cdf[msk]
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 63) test = cdf[~msk]
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 64) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 65) from sklearn import linear_model
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 66) regr = linear_model.LinearRegression()
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 67) train_x = np.asanyarray(train[['ENGINESIZE']])
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 68) train_y = np.asanyarray(train[['CO2EMISSIONS']])
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 69) regr.fit(train_x,train_y)
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 70) # the Coefficients
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 71) print('Coefficients: ',regr.coef_)
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 72) print('Intercept: ',regr.intercept_)
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 73) plt.scatter(train.ENGINESIZE,train.CO2EMISSIONS,color = 'blue')
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 74) plt.plot(train_x,regr.coef_[0][0]*train_x + regr.intercept_[0], '-r')
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 75) plt.xlabel('ENGINESIZE')
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 76) plt.ylabel('Emission')
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 77) plt.show()
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 78) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 79) ##
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 80) ## CASE ANALYSIS: ERROR ANALYSIS
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 81) ##
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 82) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 83) from sklearn.metrics import r2_score
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 84) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 85) test_x = np.asanyarray(test[['ENGINESIZE']])
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 86) test_y = np.asanyarray(test[['CO2EMISSIONS']])
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 87) test_y_hat = regr.predict(test_x)
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 88) 
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 89) print ("Mean Absolute Error: %.2f" %np.mean(np.absolute(test_y_hat - test_y)))
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 90) print ("Mean quare Error (MSE) : %.2f" %np.mean((test_y_hat - test_y)**2))
+^9b90358 (ausaafnabi 2020-01-12 20:46:57 +0530 91) print("R2-score: %.2f" %r2_score(test_y_hat, test_y))
