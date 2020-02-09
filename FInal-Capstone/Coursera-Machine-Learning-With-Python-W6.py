@@ -44,7 +44,6 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 
 # In[131]:
 
-
 get_ipython().system('wget -O loan_train.csv https://s3-api.us-geo.objectstorage.softlayer.net/cf-courses-data/CognitiveClass/ML0101ENv3/labs/loan_train.csv')
 
 
